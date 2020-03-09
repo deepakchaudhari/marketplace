@@ -2,11 +2,10 @@
 
 This backend version of the Spring Marketplace application provides a REST API.
 
-## Running marketplace locally
+## Git location for marketplace
 ```
 	git clone https://github.com/deepakchaudhari/marketplace.git
-	cd marketplace
-	./mvnw spring-boot:run
+	
 ```
 ## Swagger REST API documentation presented here (after application start):
 <a href="http://localhost:9966/marketplace/swagger-ui.html">http://localhost:9966/marketplace/swagger-ui.html</a>

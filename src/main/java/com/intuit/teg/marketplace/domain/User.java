@@ -1,7 +1,5 @@
 package com.intuit.teg.marketplace.domain;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,13 +23,8 @@ public class User {
     @Column(name = "role")
     private TypeEnum role =null;
     
-    @Column(name = "auto_bid_enabled")
-    private Boolean autoBidEnabled;
     
-    @Column(name= "auto_bid_min")
-    private BigDecimal autoBidMin;
-    
-    @JsonCreator
+
     public static TypeEnum fromValue(String text) {
       for (TypeEnum b : TypeEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
@@ -41,13 +34,13 @@ public class User {
       return null;
     }
   
-
+    @JsonCreator
     public User role(TypeEnum role) {
     	this.role = role;
     	return this;
-    }
+    }	
     
-
+    
     public enum TypeEnum {
         SELLER("seller"),
         
@@ -59,9 +52,36 @@ public class User {
           this.value = value;
         }
         
-        
+    }
+    
+    public String getUsername() {
+		return username;
+	}
 
-        
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public TypeEnum getRole() {
+		return role;
+	}
+
+
+	public void setRole(TypeEnum role) {
+		this.role = role;
+	}
+}
+
+    
+ // Future enhancemnet for the Auto-Bid Feature
+  //  @Column(name = "auto_bid_enabled", columnDefinition = "boolean default false")
+  //  private Boolean autoBidEnabled = false;
+    
+   //// Future enhancemnet for the Auto-Bid Feature 
+   //  @Column(name= "auto_bid_min")
+   // private BigDecimal autoBidMin;
 
 
     /**
@@ -143,31 +163,10 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
     **/
-	 
+ 
 
-	
-   
-}
+    /**
 
-
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
-	public TypeEnum getRole() {
-		return role;
-	}
-
-
-	public void setRole(TypeEnum role) {
-		this.role = role;
-	}
 
 
 	public Boolean getAutoBidEnabled() {
@@ -188,4 +187,5 @@ public class User {
 	public void setAutoBidMin(BigDecimal autoBidMin) {
 		this.autoBidMin = autoBidMin;
 	}
-}
+	
+}**/
