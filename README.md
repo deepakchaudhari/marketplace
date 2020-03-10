@@ -10,6 +10,9 @@ This backend version of the Spring Marketplace application provides a REST API.
 ## Swagger REST API documentation presented here (after application start):
 <a href="http://localhost:9966/marketplace/swagger-ui.html">http://localhost:9966/marketplace/swagger-ui.html</a>
 
+## Check application status
+<a href="http://localhost:9966/marketplace/actuator/health">http://localhost:9966/marketplace/actuator/health</a>
+
 ## Working with MarketPlace in Eclipse
 
 ### prerequisites
@@ -32,5 +35,26 @@ git clone https://github.com/deepakchaudhari/marketplace.git
 ```
 File -> Import -> Maven -> Existing Maven project
 ```
+## Looking for something in particular?
 
+| Layer | Source |
+|--|--|
+| REST API controllers | [REST folder](src/main/java/com/intuit/teg/marketplace/web/rest) |
+| Service | [ProjectServiceImpl.java](src/main/java/com/intuit/teg/marketplace/service/ProjectServiceImpl.java) |
+| Tests | [UserRestControllerTests.java](src/test/java/com/intuit/teg/marketplace/marketplace/web/rest/UserRestControllerTests.java) |
+
+## Configuration
+
+In its default configuration, MarketPlace uses an in-memory database (H2) which
+gets populated at startup with data.
+
+spring.h2.console.enabled=true
+spring.datasource.platform=h2
+spring.datasource.url=jdbc:h2:mem:marketplace
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+logging.level.org.springframework=INFO
+server.port=9966
+server.servlet.contextPath=/marketplace
 
