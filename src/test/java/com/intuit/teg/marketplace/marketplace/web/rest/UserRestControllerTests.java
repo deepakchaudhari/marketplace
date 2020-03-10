@@ -44,7 +44,6 @@ public class UserRestControllerTests {
     }
 
     @Test
-    @WithMockUser(roles="ADMIN")
     public void testCreateUserSuccess() throws Exception {
         User user = new User();
         user.setUsername("username");
@@ -57,7 +56,6 @@ public class UserRestControllerTests {
     }
     
     @Test
-    @WithMockUser(roles="ADMIN")
     public void testCreateUserError() throws Exception {
         User user = new User();
         user.setUsername("username");

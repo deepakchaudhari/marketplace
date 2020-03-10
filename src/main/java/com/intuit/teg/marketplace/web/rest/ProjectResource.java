@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.intuit.teg.marketplace.domain.Bid;
 import com.intuit.teg.marketplace.domain.BidDTO;
 import com.intuit.teg.marketplace.domain.Project;
+import com.intuit.teg.marketplace.domain.ProjectDTO;
 import com.intuit.teg.marketplace.domain.User;
 import com.intuit.teg.marketplace.service.ProjectService;
 
@@ -34,18 +35,18 @@ public class ProjectResource {
     private ProjectService projectService;
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Project> addProject(@RequestBody @Valid Project project,  BindingResult bindingResult) throws Exception {
+    public ResponseEntity<ProjectDTO> addProject(@RequestBody @Valid ProjectDTO project,  BindingResult bindingResult) throws Exception {
         BindingErrorsResponse errors = new BindingErrorsResponse();
         HttpHeaders headers = new HttpHeaders();
         if (bindingResult.hasErrors() || (project == null)) {
             errors.addAllErrors(bindingResult);
             headers.add("errors", errors.toJSON());
-            return new ResponseEntity<Project>(project, headers, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<ProjectDTO>(project, headers, HttpStatus.BAD_REQUEST);
         }
 
         this.projectService.saveProject(project);
         log.debug("Project created :"+project.getProjectName());
-        return new ResponseEntity<Project>(project, headers, HttpStatus.CREATED);
+        return new ResponseEntity<ProjectDTO>(project, headers, HttpStatus.CREATED);
    
     }
     

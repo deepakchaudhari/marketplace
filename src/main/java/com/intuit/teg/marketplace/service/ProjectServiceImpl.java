@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.intuit.teg.marketplace.domain.Bid;
 import com.intuit.teg.marketplace.domain.BidDTO;
 import com.intuit.teg.marketplace.domain.Project;
+import com.intuit.teg.marketplace.domain.ProjectDTO;
 import com.intuit.teg.marketplace.repository.ProjectRepository;
 
 @Service
@@ -25,9 +26,22 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional
-    public void saveProject(Project  project) throws Exception {
-    	 projectRepository.save(project);
+    public Project saveProject(ProjectDTO  project) throws Exception {
+    	Project projectObj = createProject(project);
+    	Project saveProject = projectRepository.save(projectObj);
+    	return saveProject;
     }
+    
+    public Project createProject(ProjectDTO project) throws Exception {
+    	
+    	Project projectObj = new Project();
+    	projectObj.setDescription(project.getDescription());
+    	projectObj.setMaxBudget(project.getMaxBudget());
+    	projectObj.setProjectName(project.getProjectName());
+    	projectObj.setSubmitionLastDay(project.getSubmitionLastDay());
+    	projectObj.setUser(project.getUser());
+    	return projectObj;
+  	}
     
 	@Override
 	@Transactional(readOnly = true)
