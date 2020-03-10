@@ -49,12 +49,20 @@ In its default configuration, MarketPlace uses an in-memory database (H2) which
 gets populated at startup with data.
 
 spring.h2.console.enabled=true
+
 spring.datasource.platform=h2
+
 spring.datasource.url=jdbc:h2:mem:marketplace
+
 spring.datasource.driverClassName=org.h2.Driver
+
 spring.datasource.username=sa
+
 spring.datasource.password=
+
 logging.level.org.springframework=INFO
+
 server.port=9966
+
 server.servlet.contextPath=/marketplace
 
