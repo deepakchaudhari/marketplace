@@ -1,4 +1,4 @@
-# REST API Marketplace
+# Marketplace REST API
 
 This backend version of the Spring Marketplace application provides a REST API.
 
