@@ -25,12 +25,12 @@ public class BidServiceImpl implements BidService {
     @Override
     @Transactional
     public void saveBid(BidDTO bidDTO) throws Exception {
-      Bid bid = createUser(bidDTO);
+      Bid bid = createBid(bidDTO);
       bidRepository.save(bid);
     }
     
 	@Override
-	public Bid createUser(BidDTO bidDTO) throws Exception {
+	public Bid createBid(BidDTO bidDTO) throws Exception {
 		Bid bid = new Bid();
 		User bidUser =bidDTO.getUser();
 		Optional<Project> projectObj = projectService.findProjectById(bidDTO.getProjectID());

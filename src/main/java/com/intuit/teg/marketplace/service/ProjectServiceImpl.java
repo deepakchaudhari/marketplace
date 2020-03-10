@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intuit.teg.marketplace.domain.Bid;
+import com.intuit.teg.marketplace.domain.BidDTO;
 import com.intuit.teg.marketplace.domain.Project;
 import com.intuit.teg.marketplace.repository.ProjectRepository;
 
@@ -57,5 +58,25 @@ public class ProjectServiceImpl implements ProjectService {
 			proObj.setLowestBidAmount(bid.getBidAmount());
 		}
 		return proObj;
+	}
+
+	@Override
+	public Bid findBidWinnerByprojectId(long id) throws DataAccessException {
+		Optional<Project> project = null;
+		Bid bid = null;
+		try {
+			project = projectRepository.findById(id);
+		} catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
+			return null;
+		}
+		
+		Project proObj = project.get();
+		
+		if(proObj!=null) {
+			Set<Bid> bids = proObj.getBids();
+			bid = Collections.min(bids, Comparator.comparing(s -> s.getBidAmount()));
+			proObj.setLowestBidAmount(bid.getBidAmount());
+		}
+		return bid;
 	}
 }

@@ -6,5 +6,5 @@ import com.intuit.teg.marketplace.domain.BidDTO;
 public interface BidService {
 
     void saveBid(BidDTO bid) throws Exception;
-    Bid createUser(BidDTO bidDTO) throws Exception;
+    Bid createBid(BidDTO bidDTO) throws Exception;
 }

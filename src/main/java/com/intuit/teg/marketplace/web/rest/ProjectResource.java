@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.intuit.teg.marketplace.domain.Bid;
+import com.intuit.teg.marketplace.domain.BidDTO;
 import com.intuit.teg.marketplace.domain.Project;
+import com.intuit.teg.marketplace.domain.User;
 import com.intuit.teg.marketplace.service.ProjectService;
 
 @RestController
@@ -63,6 +66,18 @@ public class ProjectResource {
    			return new ResponseEntity<Project>(HttpStatus.NOT_FOUND);
    		}
    		return new ResponseEntity<Project>(project, HttpStatus.OK);
+   	}
+    
+    
+    
+    
+    @RequestMapping(value = "/{projectId}/getBidWinner", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+   	public ResponseEntity<Bid> getBidWinner(@PathVariable("projectId") int projectId){
+   		Bid bid = projectService.findBidWinnerByprojectId(projectId);
+   		if(bid == null){
+   			return new ResponseEntity<Bid>(HttpStatus.NOT_FOUND);
+   		}
+   		return new ResponseEntity<Bid>(bid, HttpStatus.OK);
    	}
 
    
