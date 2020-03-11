@@ -54,8 +54,11 @@ File -> Import -> Maven -> Existing Maven project
 Marketplace uses three separate profile configuration for DEV, TEST and PROD respectively.
 
 application-dev.properties
+
 application-test.properties
+
 application-prod.properties
+
 
 Please use spring.profiles.active property to set profile
 
