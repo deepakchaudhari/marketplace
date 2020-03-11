@@ -1,5 +1,6 @@
 package com.intuit.teg.marketplace.web.rest;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -19,14 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.intuit.teg.marketplace.domain.Bid;
-import com.intuit.teg.marketplace.domain.BidDTO;
 import com.intuit.teg.marketplace.domain.Project;
 import com.intuit.teg.marketplace.domain.ProjectDTO;
-import com.intuit.teg.marketplace.domain.User;
 import com.intuit.teg.marketplace.service.ProjectService;
 
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping("/api/projects")
 public class ProjectResource {
 
     private final Logger log = LoggerFactory.getLogger(ProjectResource.class);
@@ -68,11 +67,9 @@ public class ProjectResource {
    		}
    		return new ResponseEntity<Project>(project, HttpStatus.OK);
    	}
+
     
-    
-    
-    
-    @RequestMapping(value = "/{projectId}/getBidWinner", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "/{projectId}/bidWinner", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
    	public ResponseEntity<Bid> getBidWinner(@PathVariable("projectId") int projectId){
    		Bid bid = projectService.findBidWinnerByprojectId(projectId);
    		if(bid == null){
@@ -80,6 +77,37 @@ public class ProjectResource {
    		}
    		return new ResponseEntity<Bid>(bid, HttpStatus.OK);
    	}
+    
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Collection<Project>> getProjects(){
+		Collection<Project> projects = this.projectService.findAllProjects();
+		if(projects.isEmpty()){
+			return new ResponseEntity<Collection<Project>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Project>>(projects, HttpStatus.OK);
+	}
+    
+    // TODO 
+    //UpdateProject
+    /**
+    @RequestMapping(value = "/{projectId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Optional<Project>> updateProject(@PathVariable("projectId") int projectId, @RequestBody @Valid Project project, BindingResult bindingResult){
+		BindingErrorsResponse errors = new BindingErrorsResponse();
+		HttpHeaders headers = new HttpHeaders();
+		if(bindingResult.hasErrors() || (project == null)){
+			errors.addAllErrors(bindingResult);
+			headers.add("errors", errors.toJSON());
+			return new ResponseEntity<Optional<Project>>(headers, HttpStatus.BAD_REQUEST);
+		}
+		Optional<Project> currentProject = this.projectService.findProjectById(projectId);
+		if(currentProject == null){
+			return new ResponseEntity<Optional<Project>>(HttpStatus.NOT_FOUND);
+		}
+		currentProject.
+		
+		
+		return new ResponseEntity<Optional<Project>>(currentProject, HttpStatus.NO_CONTENT);
+	}**/
 
    
 }

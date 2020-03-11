@@ -22,7 +22,7 @@ import com.intuit.teg.marketplace.service.BidService;
 import com.intuit.teg.marketplace.service.UserService;
 
 @RestController
-@RequestMapping("/api/bid")
+@RequestMapping("/api/bids")
 public class BidResource {
 
     private final Logger log = LoggerFactory.getLogger(BidResource.class);

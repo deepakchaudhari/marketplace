@@ -1,7 +1,9 @@
 package com.intuit.teg.marketplace.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,4 +21,11 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) throws Exception {
       userRepository.save(user);
     }
+
+    @Override
+	@Transactional(readOnly = true)
+	public Collection<User> findAllUsers() throws DataAccessException{
+		return userRepository.findAll();
+	}
+	
 }

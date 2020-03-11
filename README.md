@@ -2,9 +2,11 @@
 
 This backend version of the Spring Marketplace application provides a REST API.
 
-## Git location for marketplace
+## Running marketplace on local
 ```
 	git clone https://github.com/deepakchaudhari/marketplace.git
+	cd marketplace
+	./mvnw spring-boot:run
 	
 ```
 ## Swagger REST API documentation presented here (after application start):
@@ -39,6 +41,7 @@ File -> Import -> Maven -> Existing Maven project
 
 | Layer | Source |
 |--|--|
+| Dependency | [pom.xml](pom.xml)|
 | REST API controllers | [REST folder](src/main/java/com/intuit/teg/marketplace/web/rest) |
 | Service | [ProjectServiceImpl.java](src/main/java/com/intuit/teg/marketplace/service/ProjectServiceImpl.java) |
 | Tests | [UserRestControllerTests.java](src/test/java/com/intuit/teg/marketplace/marketplace/web/rest/UserRestControllerTests.java) |

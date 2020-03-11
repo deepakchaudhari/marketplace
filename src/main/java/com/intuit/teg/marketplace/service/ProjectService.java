@@ -1,5 +1,6 @@
 package com.intuit.teg.marketplace.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
@@ -15,4 +16,5 @@ public interface ProjectService {
     Optional<Project> findProjectById(long id) throws DataAccessException;
     Project findProjectByIdWithMinBidAmount(long id) throws DataAccessException;
     Bid findBidWinnerByprojectId(long id) throws DataAccessException;
+    Collection<Project> findAllProjects() throws DataAccessException;
 }

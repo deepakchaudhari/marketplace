@@ -1,5 +1,7 @@
 package com.intuit.teg.marketplace.web.rest;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -19,7 +21,7 @@ import com.intuit.teg.marketplace.domain.User;
 import com.intuit.teg.marketplace.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserResource {
 
     private final Logger log = LoggerFactory.getLogger(UserResource.class);
@@ -40,8 +42,17 @@ public class UserResource {
         this.userService.saveUser(user);
         log.debug("User created :"+user.getUsername());
         return new ResponseEntity<User>(user, headers, HttpStatus.CREATED);
-   
     }
+    
+
+   @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Collection<User>> getUsers(){
+		Collection<User> users = this.userService.findAllUsers();
+		if(users.isEmpty()){
+			return new ResponseEntity<Collection<User>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);
+	}
 
    
 }

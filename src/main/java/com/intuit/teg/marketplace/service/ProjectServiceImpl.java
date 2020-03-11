@@ -1,5 +1,6 @@
 package com.intuit.teg.marketplace.service;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.intuit.teg.marketplace.domain.Bid;
-import com.intuit.teg.marketplace.domain.BidDTO;
 import com.intuit.teg.marketplace.domain.Project;
 import com.intuit.teg.marketplace.domain.ProjectDTO;
 import com.intuit.teg.marketplace.repository.ProjectRepository;
@@ -93,4 +93,11 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return bid;
 	}
+	
+	 @Override
+	 @Transactional(readOnly = true)
+		public Collection<Project> findAllProjects() throws DataAccessException{
+			return projectRepository.findAll();
+		}
+		
 }
