@@ -1,6 +1,9 @@
 # Marketplace REST API
 
 This backend version of the Spring Marketplace application provides a REST API.
+Its deployed in the cloud can access with below location
+
+<a href="https://guarded-savannah-82457.herokuapp.com/marketplace/swagger-ui.html#/">https://guarded-savannah-82457.herokuapp.com/marketplace/swagger-ui.html#/</a>
 
 ## Running marketplace on local
 ```
@@ -46,26 +49,15 @@ File -> Import -> Maven -> Existing Maven project
 | Service | [ProjectServiceImpl.java](src/main/java/com/intuit/teg/marketplace/service/ProjectServiceImpl.java) |
 | Tests | [UserRestControllerTests.java](src/test/java/com/intuit/teg/marketplace/marketplace/web/rest/UserRestControllerTests.java) |
 
-## Configuration
+## DB Configuration
 
-In its default configuration, MarketPlace uses an in-memory database (H2) which
-gets populated at startup with data.
+Marketplace uses three separate profile configuration for DEV, TEST and PROD respectively.
 
-spring.h2.console.enabled=true
+application-dev.properties
+application-test.properties
+application-prod.properties
 
-spring.datasource.platform=h2
+Please use spring.profiles.active property to set profile
 
-spring.datasource.url=jdbc:h2:mem:marketplace
 
-spring.datasource.driverClassName=org.h2.Driver
-
-spring.datasource.username=sa
-
-spring.datasource.password=
-
-logging.level.org.springframework=INFO
-
-server.port=9966
-
-server.servlet.contextPath=/marketplace
 
