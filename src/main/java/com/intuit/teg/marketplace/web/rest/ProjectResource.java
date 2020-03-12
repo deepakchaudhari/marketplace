@@ -3,6 +3,7 @@ package com.intuit.teg.marketplace.web.rest;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -85,6 +86,18 @@ public class ProjectResource {
 			return new ResponseEntity<Collection<Project>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Collection<Project>>(projects, HttpStatus.OK);
+	}
+    
+    
+    @RequestMapping(value = "/{projectId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@Transactional
+	public ResponseEntity<Void> deleteProject(@PathVariable("projectId") Long projectId){
+		Optional<Project> project = this.projectService.findProjectById(projectId);
+		if(!project.isPresent()){
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		this.projectService.deleteProject(projectId);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
     
     // TODO 

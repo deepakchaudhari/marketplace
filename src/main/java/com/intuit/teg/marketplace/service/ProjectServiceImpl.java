@@ -99,5 +99,13 @@ public class ProjectServiceImpl implements ProjectService {
 		public Collection<Project> findAllProjects() throws DataAccessException{
 			return projectRepository.findAll();
 		}
+
+	@Override
+	@Transactional
+	public void deleteProject(Long projectId) throws DataAccessException {
+		projectRepository.deleteById(projectId);
+		
+	}
+	
 		
 }

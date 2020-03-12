@@ -47,7 +47,6 @@ public class UserRestControllerTests {
     public void testCreateUserSuccess() throws Exception {
         User user = new User();
         user.setUsername("username");
-       // user.setRole( "OWNER_ADMIN" );
         ObjectMapper mapper = new ObjectMapper();
         String newUserAsJSON = mapper.writeValueAsString(user);
         this.mockMvc.perform(post("/api/user/")

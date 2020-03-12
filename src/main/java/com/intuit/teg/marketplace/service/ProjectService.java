@@ -17,4 +17,5 @@ public interface ProjectService {
     Project findProjectByIdWithMinBidAmount(long id) throws DataAccessException;
     Bid findBidWinnerByprojectId(long id) throws DataAccessException;
     Collection<Project> findAllProjects() throws DataAccessException;
+    void deleteProject(Long projectId) throws DataAccessException;
 }
