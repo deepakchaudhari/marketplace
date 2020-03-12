@@ -63,5 +63,8 @@ application-prod.properties
 
 Please use spring.profiles.active property to set profile
 
+## Testing
 
+To launch your application's tests, run:
 
+    ./mvnw clean test
