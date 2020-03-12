@@ -21,7 +21,7 @@ import com.intuit.teg.marketplace.domain.User;
 import com.intuit.teg.marketplace.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/user")
 public class UserResource {
 
     private final Logger log = LoggerFactory.getLogger(UserResource.class);

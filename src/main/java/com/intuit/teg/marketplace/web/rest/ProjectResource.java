@@ -26,7 +26,7 @@ import com.intuit.teg.marketplace.domain.ProjectDTO;
 import com.intuit.teg.marketplace.service.ProjectService;
 
 @RestController
-@RequestMapping("/api/projects")
+@RequestMapping("/api/v1/project")
 public class ProjectResource {
 
     private final Logger log = LoggerFactory.getLogger(ProjectResource.class);
