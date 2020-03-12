@@ -52,6 +52,11 @@ File -> Import -> Maven -> Existing Maven project
 
 ## DB Configuration
 
+Local H2 DB can be access with below url
+
+<a href="http://localhost:9966/marketplace/h2-console/">http://localhost:9966/marketplace/h2-console/</a>
+
+
 Marketplace uses three separate profile configuration for DEV, TEST and PROD respectively.
 
 application-dev.properties
